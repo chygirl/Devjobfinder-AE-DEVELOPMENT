@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Dev Job Finder</title>
+  
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
+</head>
+<body>
+  <section id="header">
+    <div class="menu-bar">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html"><img src="images/icons8-job-seeker-64.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#jobs">Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#site-stats">Job Stats</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#app-banner">Download App</a>
+            </li>
+            <li>
+              <a class="nav-link" href="appliedjobs.html">Applied Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="banner text-center">
+      <h1>DEV <img src="images/icons8-job-seeker-64.png"> JOB FINDER </h1>
+      <p>Apply for favourite developer jobs on the blockchain.</p>
+    </div>
+  </section>
+  <div id="message">
+    <div id="loader" class="alert alert-secondary text-center">
+      <img src="images/giphy.gif">
+      <div><b>UPDATING...</b></div>
+    </div>
+  </div>
+  <!-----search-->
+  <div class="search-job text-center">
+    <input type="text" class="form-control" placeholder="search keyword">
+    <input type="text" class="form-control" placeholder="search company">
+    <input type="text" class="form-control" placeholder="search location">
+    <input type="button" class="btn btn-dark" value="find job">
+  </div>
+  <!-----------top recruiters--------->
+  <section id="recruiters">
+    <div class="container text-center mb-2"><h3>TOP RECRUITERS</h3><div>
+    <img src="images/aeternity-logo-png-transparent.png" alt="Recruiters">
+    <img src="images/icons8-angularjs-96.png" alt="Recruiters">
+    <img src="images/icons8-blockchain-64.png" alt="Recruiters">
+    <img src="images/icons8-python-64.png" alt="Recruiters">
+    <img src="images/icons8-javascript-96.png" alt="Recruiters">
+  </section>
+  <!--------------------------Recent Jobs---------------------------->
+  <section id="jobs">
+    <div class="container mt-2">
+      <h5>RECENT OPENINGS</h5>
+      <div class="company-details">
+        <div class="job-update">
+          <h4><b>Senior Blockchain Developer</b></h4>
+          <p>Blockchain Dev co.</p>
+          <i></i><span>2-3yrs</span><br>
+          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
+          <i></i><span> France.</span>
+          <p>Skills:<i></i><small> Java</small><small> python</small><small> HTML,CSS</small><small> .Net</small></p>
+          <p>Description:<i></i> Applicants are required to have required to have worked on some blockchain projects prior to the application.<a href=""> Read More</a></p>
+        </div>
+        <div class="apply-btn">
+          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
+        </div>
+      </div>
+      <div class="company-details">
+        <div class="job-update">
+          <h4><b>Software Developer(Fresher)</b></h4>
+          <p>Software Dev co.</p>
+          <i></i><span>0-1yrs</span><br>
+          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
+          <i></i><span> New York</span>
+          <p>Skills:<i></i><small> Javascript</small><small> python</small><small> HTML,CSS</small><small> Flutter</small></p>
+          <p>Description:<i></i> Applicant should be a liitle bit cquited with progamming and is ready to learn quickly. <a href=""> Read More</a></p>
+        </div>
+        <div class="apply-btn">
+          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
+        </div>
+      </div>
+      <div class="company-details">
+        <div class="job-update">
+          <h4><b>Senior Web Developer</b></h4>
+          <p>Web Dev co.</p>
+          <i></i><span>3-4yrs</span><br>
+          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
+          <i></i><span> Bulgota</span>
+          <p>Skills:<i></i><small> Angular Js</small><small> python</small><small> HTML,CSS</small><small> React Js</small></p>
+          <p>Description:<i></i> Applicants must have worked on various web projects and is highli skiiled and flexible. <a href=""> Read More</a></p>
+        </div>
+        <div class="apply-btn">
+          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
+        </div>
+      </div>
+      <div class="company-details">
+        <div class="job-update">
+          <h4><b>Seasoned Senior Python Developer. </b></h4>
+          <p>Python Dev co.</p>
+          <i></i><span>0-1yrs</span><br>
+          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
+          <i></i><span> Germany.</span>
+          <p>Skills:<i></i><small> Javascript</small><small> python</small><small> HTML,CSS</small><small> Django</small></p>
+          <p>Description:<i></i> Applicant must have been in python dev for a minimum of 4tears and must be highly skilled. <a href=""> Read More</a></p>
+        </div>
+        <div class="apply-btn">
+          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
+        </div>
+      </div>
+      <div class="company-details">
+        <div class="job-update">
+          <h4><b>Project Manager</b></h4>
+          <p>Project co.</p>
+          <i></i><span>0-1yrs</span><br>
+          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
+          <i></i><span> Spain</span>
+          <p>Skills:<i></i><small> Java</small><small> python</small><small> HTML,CSS</small><small> .Net</small></p>
+          <p>Description:<i></i> Apllicant must have people and managerial skill respectively and can co-ordinate <a href=""> Read More</a></p>
+        </div>
+        <div class="apply-btn">
+          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
+        </div>
+      </div>
+      <ul class="page-link text-center">
+        <li class="left-arrow">&#8592;</li>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>4</li>
+        <li>5</li>
+        <li class="right-arrow">&#8594;</li>
+      </ul>
+    </div>
+  </section>
+  <!--------Site stats---------->
+  <section id="site-stats">
+    <div class="container text-center">
+      <h3>SITE STATS</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-6">
+              <div class="stats-box">
+                <i></i><span><small> 100k +</small></span>
+                <p>Job seekers</p>
+              </div>
+            </div>
+
+            <div class="col-6">
+                <div class="stats-box">
+                  <i></i><span><small> 100k +</small></span>
+                  <p>Job seekers</p>
+                </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+              <div class="col-6">
+                <div class="stats-box">
+                  <i></i><span><small> 100k +</small></span>
+                  <p>Job seekers</p>
+                </div>
+              </div>
+    
+              <div class="col-6">
+                  <div class="stats-box">
+                    <i></i><span><small> 100k +</small></span>
+                    <p>Job seekers</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  <!----------app  banner--------->
+  <section id="app-banner" class="text-center">
+    <h1>Find Jobs on Mobile, Download Dev-Jobfinder App</h1>
+    <img src="images/icons8-playstore-64.png" alt="Andriod App">
+    <img src="images/icons8-apple-app-store-64.png" alt="iOS App">
+  </section>
+  <!------footer------->
+  <section id="contact" class="footer text-center">
+    <img src="images/icons8-job-seeker-64.png" alt="Footer Image" class="footer-image">
+    <p>Find your dream developer job on the blockchain.<br>Your Application becomes immutable and recorded on the blockchain. </p>
+    <hr>
+    <p>made with <i class="fa fa-heart"></i> Chy girl.</p>
+  </section>
+  <div id="applyModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">APPLY FOR YOUR JOB ROLE.</h5>
+          <button class="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true" class="btn btn-dark">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="input-name">Full Name</label>
+              <input type="name" class="form-control" id="input-name" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+              <label for="input-email">Email Address</label>
+              <input type="email" class="form-control" id="input-email" placeholder="Active email">
+            </div>
+            <div class="form-group">
+              <label for="input-link">Github Repository Link/ Link To Online Portfolio. </label>
+              <input type="Link" class="form-control" id="input-link" placeholder=" Valid github link/ online portfolio">
+            </div>
+            <div class="form-group">
+              <label for="input-jobRole">Category</label>
+              <select class="form-control" id="input-jobRole">
+                <option value="Senior Blockchain Developer">Senior Blockchain Developer</option>
+                <option value="Software Developer(Fresher)">Software Developer(Fresher)</option>
+                <option value="Senior Web Developer">Senior Web Developer</option>
+                <option value="Seasoned Senior Python Developer">Seasoned Senior Python Developer</option>
+                <option value="Project Manager">Project Manager</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <Label for="input-aboutYourself">Brief Details About Yourself. </Label>
+              <textarea id="input-aboutYourself"  rows="4" class="form-control"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-dark" data-dismiss="modal">Back</button>
+          <button class="btn btn-Success" id="applicationBtn" data-dismiss="modal">APPLY</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/@aeternity/aepp-sdk@4.2.0/dist/aepp-sdk.browser-script.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/smooth-scroll.js"></script>
+</body>
+</html>

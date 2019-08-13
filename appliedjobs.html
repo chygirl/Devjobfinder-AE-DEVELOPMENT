@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Dev Job Finder</title>
+  
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
+</head>
+<body>
+  <section id="header">
+    <div class="menu-bar">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><img src="images/" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#jobs">Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#site-stats">Job Stats</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#app-banner">Download App</a>
+            </li>
+            <li>
+              <a class="nav-link" href="appliedjobs.html">Applied Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="banner text-center">
+      <h1>DEV <img src="images/icons8-job-seeker-64.png"> JOB FINDER </h1>
+      <p>Apply for favourite developer jobs on the blockchain.</p>
+    </div>
+  </section>
+  <div id="message">
+    <div id="loader" class="alert alert-secondary text-center">
+      <img src="images/loader.gif">
+      <div><b>UPDATING...</b></div>
+    </div>
+  </div>
+
+  <section id="appliedjobs">
+    <div class="table-responsive col-md-12">
+      <h2 class="text-center">Applied Jobs</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Link</th>
+            <th>Category</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="appliedJobs">
+          
+        </tbody>
+      </table>
+      
+      <script id="applyJS" type="x-tmpl-mustache">
+        {{#applyArray}}
+          <tr>
+            <td>{{ name }}</td>
+            <td>{{ email }}</td>
+            <td><a href="{{ link }}" target="_blank">{{ link }}</a></td>
+            <td>{{ category }}</td>
+            <td><button type="button" class="btn btn-link"  data-toggle="modal" data-target="#detailsModal">Details</button></td>=
+          </tr>
+          <div id="detailsModal" class="modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="modal-title">Details</h6>
+                    <button class="button" class="close" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true" class="btn btn-dark">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      {{ details }}
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-dark" data-dismiss="modal">Back</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {{/applyArray}}
+      </script>
+    </div>
+  </section>
+  
+  <!------footer------->
+  <section id="contact" class="footer text-center">
+    <img src="images/icons8-job-seeker-64.png" alt="Footer Image" class="footer-image">
+    <p>Find your dream developer job on the blockchain.<br>Your Application become immutable and recorded on the blockchain. </p>
+    <a href=""><img src="images/icons8-angularjs-96.png"></a>
+    <a href=""><img src="images/icons8-blockchain-64.png"></a>
+    <a href=""><img src="images/icons8-python-64.png"></a>
+    <a href=""><img src="images/icons8-javascript-96.png"></a>
+    <hr>
+    <p>made with <i class="fa fa-heart"></i> Chy girl.</p>
+  </section>
+  
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/@aeternity/aepp-sdk@4.2.0/dist/aepp-sdk.browser-script.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/smooth-scroll.js"></script>
+</body>
+</html>

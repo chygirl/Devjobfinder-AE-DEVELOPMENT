@@ -1,0 +1,31 @@
+contract JobPortal =
+  
+  record job =
+    { clientAddress : address,
+      name          : string,
+      email         : string,
+      link          : string,
+      category      : string,
+      details       : string,
+      amount        : int }
+      
+  record state =
+    { jobs      : map(int, job),
+      jobsLength : int }
+      
+  entrypoint init() =
+    { jobs = {},
+      jobsLength = 0 }
+      
+  entrypoint get_job(index : int) : job =
+    switch(Map.lookup(index, state.jobs))
+      None    => abort("There was no job with this index registered.")
+      Some(x) => x
+      
+  stateful entrypoint register_job(name' : string, email' : string, link' : string, category' : string, details' : string) =
+    let job = { clientAddress = Call.caller, name = name', email = email', link = link', category = category', details = details', amount = 0}
+    let index = get_jobs_length() + 1
+    put(state{ jobs[index] = job, jobsLength = index })
+    
+  entrypoint get_jobs_length() : int =
+    state.jobsLength
