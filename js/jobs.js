@@ -1,4 +1,4 @@
-const contractSource = `
+var contractSource = `
   contract JobPortal =
     
     record job =
@@ -33,7 +33,7 @@ const contractSource = `
         Some(x) => x
 `;
 
-const contractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
+var contractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
 var client = null;
 var jobsArray = [];
 var jobsLength = 0;

@@ -1,4 +1,4 @@
-const contractSource = `
+var contractSource = `
   contract JobPortal =
   
     record job =
@@ -33,7 +33,7 @@ const contractSource = `
         Some(x) => x
 `;
 
-const contractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
+var contractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
 var client = null;
 var jobsArray = [];
 
@@ -59,7 +59,7 @@ $('#addJobBtn').click(async function(){
   var skills = ($('#input-skills').val());
   var description = ($('#input-jobDescripton').val());
 
-  console.log("Developer Type: " + devType + " , Company Name: " + companyName + " , Job Duration: " + jobDuration + " years, Amount: " + amount + " AE, Job Location: " + jobLocation + " , Skills: " + skills + " and Job Description: " + description)
+  console.log("Developer Type: " + devType + ", Company Name: " + companyName + ", Job Duration: " + jobDuration + "years, Amount: " + amount + " AE, Job Location: " + jobLocation + ", Skills: " + skills + " and Job Description: " + description)
 
   await contractCall('register_job', [devType, companyName, jobDuration, amount, jobLocation, skills, description], 0);
 
