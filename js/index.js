@@ -1,73 +1,7 @@
-const jobsContractSource = `
-contract JobPortal =
-  
-  record job =
-    { recuiterAddress : address,
-      devType         : string,
-      companyName     : string,
-      jobDuration     : int,
-      amount          : int,
-      jobLocation     : string,
-      skills          : string,
-      description     : string }
-      
-  record state =
-    { jobs      : map(int, job),
-      jobsLength : int }
-      
-  entrypoint init() =
-    { jobs = {},
-      jobsLength = 0 }
-
-  entrypoint get_jobs_length() : int =
-    state.jobsLength
-      
-  stateful entrypoint register_job(devType' : string, companyName' : string, jobDuration' : int, amount' : int, jobLocation' : string, skills' : string, description' : string) =
-    let job = { recuiterAddress = Call.caller, devType = devType', companyName = companyName', jobDuration = jobDuration', amount = amount', jobLocation = jobLocation', skills = skills', description = description' }
-    let index = get_jobs_length() + 1
-    put(state{ jobs[index] = job, jobsLength = index })
-
-  entrypoint get_job(index : int) : job =
-    switch(Map.lookup(index, state.jobs))
-      None    => abort("There was no job with this index registered.")
-      Some(x) => x
-`;
-
-const applyContractSource = `
-contract ApplicationPortal =
-  
-  record applicant =
-    { developerAddress : address,
-      name             : string,
-      email            : string,
-      link             : string,
-      category         : string,
-      details          : string }
-      
-  record state =
-    { applications       : map(int, applicant),
-      applicationsLength : int }
-      
-  entrypoint init() =
-    { applications = {},
-      applicationsLength = 0 }
-      
-  entrypoint get_applications_length() : int =
-    state.applicationsLength
-      
-  stateful entrypoint apply(name' : string, email' : string, link' : string, category' : string, details' : string) =
-    let applicant = { developerAddress = Call.caller, name = name', email = email', link = link', category = category', details = details' }
-    let index = get_applications_length() + 1
-    put(state{ applications[index] = applicant, applicationsLength = index })
-    
-  entrypoint get_application(index : int) : applicant =
-    switch(Map.lookup(index, state.applications))
-      None    => abort("There was no application with this index registered.")
-      Some(x) => x
-`;
-
-const jobsContractAddress = 'ct_4xDTTnKwQMvviFXvCFWDtBLJUyqhvFYkJ4egozzXtzVJPEQTf';
-const applyContractAddress = 'ct_2MgUtqan95mFZgQLXU2fFeWJGwY6AwN9QLduLvtySdvKhiSggn';
+var jobsContractSource;
+var applyContractSource;
+var jobsContractAddress;
+var applyContractAddress;
 var client = null;
 var applyArray = [];
 var jobsArray = [];
@@ -96,6 +30,77 @@ async function contractCall(func, args, value) {
 }
 
 window.addEventListener('load', async () => {
+  jobsContractSource = `
+    contract JobPortal =
+      
+      record job =
+        { recuiterAddress : address,
+          devType         : string,
+          companyName     : string,
+          jobDuration     : int,
+          amount          : int,
+          jobLocation     : string,
+          skills          : string,
+          description     : string }
+          
+      record state =
+        { jobs      : map(int, job),
+          jobsLength : int }
+          
+      entrypoint init() =
+        { jobs = {},
+          jobsLength = 0 }
+
+      entrypoint get_jobs_length() : int =
+        state.jobsLength
+          
+      stateful entrypoint register_job(devType' : string, companyName' : string, jobDuration' : int, amount' : int, jobLocation' : string, skills' : string, description' : string) =
+        let job = { recuiterAddress = Call.caller, devType = devType', companyName = companyName', jobDuration = jobDuration', amount = amount', jobLocation = jobLocation', skills = skills', description = description' }
+        let index = get_jobs_length() + 1
+        put(state{ jobs[index] = job, jobsLength = index })
+
+      entrypoint get_job(index : int) : job =
+        switch(Map.lookup(index, state.jobs))
+          None    => abort("There was no job with this index registered.")
+          Some(x) => x
+    `;
+
+  applyContractSource = `
+    contract ApplicationPortal =
+      
+      record applicant =
+        { developerAddress : address,
+          name             : string,
+          email            : string,
+          link             : string,
+          category         : string,
+          details          : string }
+          
+      record state =
+        { applications       : map(int, applicant),
+          applicationsLength : int }
+          
+      entrypoint init() =
+        { applications = {},
+          applicationsLength = 0 }
+          
+      entrypoint get_applications_length() : int =
+        state.applicationsLength
+          
+      stateful entrypoint apply(name' : string, email' : string, link' : string, category' : string, details' : string) =
+        let applicant = { developerAddress = Call.caller, name = name', email = email', link = link', category = category', details = details' }
+        let index = get_applications_length() + 1
+        put(state{ applications[index] = applicant, applicationsLength = index })
+        
+      entrypoint get_application(index : int) : applicant =
+        switch(Map.lookup(index, state.applications))
+          None    => abort("There was no application with this index registered.")
+          Some(x) => x
+    `;
+
+  jobsContractAddress = 'ct_4xDTTnKwQMvviFXvCFWDtBLJUyqhvFYkJ4egozzXtzVJPEQTf';
+  applyContractAddress = 'ct_2MgUtqan95mFZgQLXU2fFeWJGwY6AwN9QLduLvtySdvKhiSggn';
+
   $("#loader").show();
 
   client = await Ae.Aepp();
