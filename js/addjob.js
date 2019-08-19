@@ -1,39 +1,39 @@
 const addJobContractSource = `
-  contract JobPortal =
-  
-    record job =
-      { recuiterAddress : address,
-        devType         : string,
-        companyName     : string,
-        jobDuration     : int,
-        amount          : int,
-        jobLocation     : string,
-        skills          : string,
-        description     : string }
-        
-    record state =
-      { jobs      : map(int, job),
-        jobsLength : int }
-        
-    entrypoint init() =
-      { jobs = {},
-        jobsLength = 0 }
+contract JobPortal =
 
-    entrypoint get_jobs_length() : int =
-      state.jobsLength
-        
-    stateful entrypoint register_job(devType' : string, companyName' : string, jobDuration' : int, amount' : int, jobLocation' : string, skills' : string, description' : string) =
-      let job = { recuiterAddress = Call.caller, devType = devType', companyName = companyName', jobDuration = jobDuration', amount = amount', jobLocation = jobLocation', skills = skills', description = description' }
-      let index = get_jobs_length() + 1
-      put(state{ jobs[index] = job, jobsLength = index })
+  record job =
+    { recuiterAddress : address,
+      devType         : string,
+      companyName     : string,
+      jobDuration     : int,
+      amount          : int,
+      jobLocation     : string,
+      skills          : string,
+      description     : string }
+      
+  record state =
+    { jobs      : map(int, job),
+      jobsLength : int }
+      
+  entrypoint init() =
+    { jobs = {},
+      jobsLength = 0 }
 
-    entrypoint get_job(index : int) : job =
-      switch(Map.lookup(index, state.jobs))
-        None    => abort("There was no job with this index registered.")
-        Some(x) => x
+  entrypoint get_jobs_length() : int =
+    state.jobsLength
+      
+  stateful entrypoint register_job(devType' : string, companyName' : string, jobDuration' : int, amount' : int, jobLocation' : string, skills' : string, description' : string) =
+    let job = { recuiterAddress = Call.caller, devType = devType', companyName = companyName', jobDuration = jobDuration', amount = amount', jobLocation = jobLocation', skills = skills', description = description' }
+    let index = get_jobs_length() + 1
+    put(state{ jobs[index] = job, jobsLength = index })
+
+  entrypoint get_job(index : int) : job =
+    switch(Map.lookup(index, state.jobs))
+      None    => abort("There was no job with this index registered.")
+      Some(x) => x
 `;
 
-const addJobContractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
+const addJobContractAddress = 'ct_4xDTTnKwQMvviFXvCFWDtBLJUyqhvFYkJ4egozzXtzVJPEQTf';
 var client = null;
 var jobsArray = [];
 

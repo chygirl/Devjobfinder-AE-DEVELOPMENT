@@ -1,37 +1,37 @@
 const appliedJobContractSource = `
-  contract ApplicationPortal =
-    
-    record applicant =
-      { developerAddress : address,
-        name             : string,
-        email            : string,
-        link             : string,
-        category         : string,
-        details          : string }
-        
-    record state =
-      { applications       : map(int, applicant),
-        applicationsLength : int }
-        
-    entrypoint init() =
-      { applications = {},
-        applicationsLength = 0 }
-        
-    entrypoint get_applications_length() : int =
-      state.applicationsLength
-        
-    stateful entrypoint apply(name' : string, email' : string, link' : string, category' : string, details' : string) =
-      let applicant = { developerAddress = Call.caller, name = name', email = email', link = link', category = category', details = details' }
-      let index = get_applications_length() + 1
-      put(state{ applications[index] = applicant, applicationsLength = index })
+contract ApplicationPortal =
+  
+  record applicant =
+    { developerAddress : address,
+      name             : string,
+      email            : string,
+      link             : string,
+      category         : string,
+      details          : string }
       
-    entrypoint get_application(index : int) : applicant =
-      switch(Map.lookup(index, state.applications))
-        None    => abort("There was no application with this index registered.")
-        Some(x) => x
+  record state =
+    { applications       : map(int, applicant),
+      applicationsLength : int }
+      
+  entrypoint init() =
+    { applications = {},
+      applicationsLength = 0 }
+      
+  entrypoint get_applications_length() : int =
+    state.applicationsLength
+      
+  stateful entrypoint apply(name' : string, email' : string, link' : string, category' : string, details' : string) =
+    let applicant = { developerAddress = Call.caller, name = name', email = email', link = link', category = category', details = details' }
+    let index = get_applications_length() + 1
+    put(state{ applications[index] = applicant, applicationsLength = index })
+    
+  entrypoint get_application(index : int) : applicant =
+    switch(Map.lookup(index, state.applications))
+      None    => abort("There was no application with this index registered.")
+      Some(x) => x
 `;
 
-const appliedJobContractAddress = 'ct_2oRWcRswdR8w2D6FkfJAQUF33LA1Kp2wzitpMyjuaGCTgUHpXd';
+const appliedJobContractAddress = 'ct_2MgUtqan95mFZgQLXU2fFeWJGwY6AwN9QLduLvtySdvKhiSggn';
 var client = null;
 var applyArray = [];
 var applicationsLength = 0;
