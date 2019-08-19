@@ -1,6 +1,6 @@
 const contractSource = `
   contract JobPortal =
-    
+  
     record job =
       { recuiterAddress : address,
         devType         : string,
@@ -36,45 +36,39 @@ const contractSource = `
 const contractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
 var client = null;
 var jobsArray = [];
-var jobsLength = 0;
 
-function renderJobs() {
-  let template = $('#jobsJS').html();
-  Mustache.parse(template);
-  let rendered = Mustache.render(template, {jobsArray});
-  $('#recentJobs').html(rendered);
-}
-
-async function callStatic(func, args) {
+async function contractCall(func, args, value) {
   const contract = await client.getContractInstance(contractSource, {contractAddress});
-  const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
-  const decodedGet = await calledGet.decode().catch(e => console.error(e));
+  const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
 
-  return decodedGet;
+  return calledSet;
 }
 
 window.addEventListener('load', async () => {
-  $("#loader").show();
-
   client = await Ae.Aepp();
+});
 
-  jobsLength = await callStatic('get_jobs_length', []);
+$('#applicationBtn').click(async function(){
+  $("#loader").show();
+  const devType = ($('#input-name').val()),
+        companyName = ($('#input-email').val()),
+        jobDuration = ($('#input-link').val()),
+        amount = ($('#input-jobRole').val()),
+        jobLocation = ($('#input-aboutYourself').val()),
+        skills = ($('#input-jobRole').val()),
+        description = ($('#input-jobRole').val());
 
-  for (let i = 1; i <= jobsLength; i++) {
+  await contractCall('register_job', [devType, companyName, jobDuration, amount, jobLocation, skills, description]);
 
-    const job = await callStatic('get_job', [i]);
-
-    jobsArray.push({
-      devType: job.devType,
-      companyName: job.companyName,
-      jobDuration: job.jobDuration,
-      amount: job.amount,
-      jobLocation: job.jobLocation,
-      skills: job.skills,
-      description: job.description,
-    })
-  }
-  renderJobs();
+  jobsArray.push({
+    devType: devType,
+    companyName: companyName,
+    jobDuration: jobDuration,
+    amount: amount,
+    jobLocation: jobLocation,
+    skills: skills,
+    description: description,
+  })
 
   $("#loader").hide();
 });
