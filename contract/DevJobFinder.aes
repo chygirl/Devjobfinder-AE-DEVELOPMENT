@@ -1,4 +1,3 @@
-const contractSource = `
 contract DevJobFinder =
   
   record job =
@@ -56,48 +55,3 @@ contract DevJobFinder =
     switch(Map.lookup(index, state.applications))
       None    => abort("There was no application with this index registered.")
       Some(x) => x
-`;
-
-const contractAddress = 'ct_2MyEEeJgKyZy1t3Mp1gZkYK5Bw4ajMC3YB83JgjJd7SRhviFLB';
-var client = null;
-var applyArray = [];
-var applicationsLength = 0;
-
-function renderApplications() {
-  let template = $('#applyJS').html();
-  Mustache.parse(template);
-  let rendered = Mustache.render(template, {applyArray});
-  $('#appliedJobs').html(rendered);
-}
-
-async function callStatic(func, args) {
-  const contract = await client.getContractInstance(contractSource, {contractAddress});
-  const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
-  const decodedGet = await calledGet.decode().catch(e => console.error(e));
-
-  return decodedGet;
-}
-
-window.addEventListener('load', async () => {
-  $("#loader").show();
-
-  client = await Ae.Aepp();
-
-  applicationsLength = await callStatic('get_applications_length', []);
-
-  for (let i = 1; i <= applicationsLength; i++) {
-
-    const applicant = await callStatic('get_application', [i]);
-
-    applyArray.push({
-      name: applicant.name,
-      email: applicant.email,
-      link: applicant.link,
-      category: applicant.category,
-      details: applicant.details,
-    })
-  }
-  renderApplications();
-
-  $("#loader").hide();
-});
