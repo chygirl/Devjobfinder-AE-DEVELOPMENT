@@ -20,7 +20,7 @@
   <section id="header">
     <div class="menu-bar">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#"><img src="images/icons8-job-seeker-64.png"></a>
+        <a class="navbar-brand" href="index.html"><img src="images/icons8-job-seeker-64.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa fa-bars"></i>
         </button>
@@ -59,73 +59,63 @@
       <div><b>UPDATING...</b></div>
     </div>
   </div>
-
-  <section id="appliedjobs">
-    <div class="table-responsive col-md-12">
-      <h2 class="text-center">Applied Jobs</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email Address</th>
-            <th>Link</th>
-            <th>Category</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody id="appliedJobs">
-          
-        </tbody>
-      </table>
-      
-      <script id="applyJS" type="x-tmpl-mustache">
-        {{#applyArray}}
-          <tr>
-            <td>{{ name }}</td>
-            <td>{{ email }}</td>
-            <td><a href="{{ link }}" target="_blank">{{ link }}</a></td>
-            <td>{{ category }}</td>
-            <td><button type="button" class="btn btn-link"  data-toggle="modal" data-target="#detailsModal">Details</button></td>=
-          </tr>
-          <div id="detailsModal" class="modal" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h6 class="modal-title">Details</h6>
-                    <button class="button" class="close" data-dismiss="modal" aria-label="close">
-                      <span aria-hidden="true" class="btn btn-dark">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                      {{ details }}
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-dark" data-dismiss="modal">Back</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        {{/applyArray}}
-      </script>
+  <!--------------------------Add Job---------------------------->
+  <section id="addjob">
+    <div class="container">
+      <h5>Add Job</h5>
+      <form>
+        <div class="form-group">
+          <label for="input-devType">Developer Type</label>
+          <select class="form-control" id="input-devType">
+            <option value="Senior Blockchain Developer">Senior Blockchain Developer</option>
+            <option value="Software Developer(Fresher)">Software Developer(Fresher)</option>
+            <option value="Senior Web Developer">Senior Web Developer</option>
+            <option value="Seasoned Senior Python Developer">Seasoned Senior Python Developer</option>
+            <option value="Project Manager">Project Manager</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="input-company">Company Name</label>
+          <input type="text" class="form-control" id="input-company" placeholder="Company Name">
+        </div>
+        <div class="form-group">
+          <label for="input-jobDuration">Job Duration</label>
+          <input type="number" class="form-control" id="input-jobDuration" placeholder="Job Duration">
+        </div>
+        <div class="form-group">
+          <label for="input-amount">Amount</label>
+          <input type="number" class="form-control" id="input-amount" placeholder="Amount in AE">
+        </div>
+        <div class="form-group">
+          <label for="input-location">Job Location</label>
+          <input type="text" class="form-control" id="input-location" placeholder="Job Location">
+        </div>
+        <div class="form-group">
+          <label for="input-skills">Skills Required</label>
+          <small class="text-danger">Leave a space after each skill</small>
+          <input type="text" class="form-control" id="input-skills" placeholder="Skills Required">
+        </div>
+        <div class="form-group">
+          <Label for="input-jobDescripton">Job Description</Label>
+          <textarea id="input-jobDescripton"  rows="4" class="form-control"></textarea>
+        </div>
+      </form>
+      <div class=" text-center">
+        <button id="addJobBtn" class="btn btn-danger">Add Job</button>
+      </div>
     </div>
   </section>
-  
   <!------footer------->
   <section id="contact" class="footer text-center">
     <img src="images/icons8-job-seeker-64.png" alt="Footer Image" class="footer-image">
-    <p>Find your dream developer job on the blockchain.<br>Your Application become immutable and recorded on the blockchain. </p>
-    <a href=""><img src="images/icons8-angularjs-96.png"></a>
-    <a href=""><img src="images/icons8-blockchain-64.png"></a>
-    <a href=""><img src="images/icons8-python-64.png"></a>
-    <a href=""><img src="images/icons8-javascript-96.png"></a>
+    <p>Find your dream developer job on the blockchain.<br>Your Application becomes immutable and recorded on the blockchain. </p>
     <hr>
     <p>made with <i class="fa fa-heart"></i> Chy girl.</p>
   </section>
   
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="https://unpkg.com/@aeternity/aepp-sdk@4.2.0/dist/aepp-sdk.browser-script.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
-  <script src="js/appliedJobs.js"></script>
+  <script src="https://unpkg.com/@aeternity/aepp-sdk@4.2.0/dist/aepp-sdk.browser-script.js"></script>
+  <script src="js/addJob.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/smooth-scroll.js"></script>

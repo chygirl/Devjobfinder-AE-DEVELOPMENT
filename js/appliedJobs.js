@@ -61,14 +61,13 @@ contract DevJobFinder =
 const contractAddress = 'ct_2MyEEeJgKyZy1t3Mp1gZkYK5Bw4ajMC3YB83JgjJd7SRhviFLB';
 var client = null;
 var applyArray = [];
-var jobsArray = [];
-var jobsLength = 0;
+var applicationsLength = 0;
 
-function renderJobs() {
-  let template = $('#jobsJS').html();
+function renderApplications() {
+  let template = $('#applyJS').html();
   Mustache.parse(template);
-  let rendered = Mustache.render(template, {jobsArray});
-  $('#recentJobs').html(rendered);
+  let rendered = Mustache.render(template, {applyArray});
+  $('#appliedJobs').html(rendered);
 }
 
 async function callStatic(func, args) {
@@ -79,56 +78,26 @@ async function callStatic(func, args) {
   return decodedGet;
 }
 
-async function contractCall(func, args, value) {
-  const contract = await client.getContractInstance(contractSource, {contractAddress});
-  const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
-
-  return calledSet;
-}
-
 window.addEventListener('load', async () => {
   $("#loader").show();
 
   client = await Ae.Aepp();
 
-  jobsLength = await callStatic('get_jobs_length', []);
+  applicationsLength = await callStatic('get_applications_length', []);
 
-  for (let i = 1; i <= jobsLength; i++) {
+  for (let i = 1; i <= applicationsLength; i++) {
 
-    const job = await callStatic('get_job', [i]);
+    const applicant = await callStatic('get_application', [i]);
 
-    jobsArray.push({
-      devType: job.devType,
-      companyName: job.companyName,
-      jobDuration: job.jobDuration,
-      amount: job.amount,
-      jobLocation: job.jobLocation,
-      skills: job.skills,
-      description: job.description,
+    applyArray.push({
+      name: applicant.name,
+      email: applicant.email,
+      link: applicant.link,
+      category: applicant.category,
+      details: applicant.details,
     })
   }
-  renderJobs();
-
-  $("#loader").hide();
-});
-
-$('#applicationBtn').click(async function(){
-  $("#loader").show();
-  const name = ($('#input-name').val()),
-        email = ($('#input-email').val()),
-        link = ($('#input-link').val()),
-        category = ($('#input-jobRole').val()),
-        details = ($('#input-aboutYourself').val());
-
-  await contractCall('apply', [name, email, link, category, details], 0);
-
-  applyArray.push({
-    name: name,
-    email: email,
-    link: link,
-    category: category,
-    details: details,
-  })
+  renderApplications();
 
   $("#loader").hide();
 });

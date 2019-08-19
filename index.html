@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Dev Job Finder</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
   
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
@@ -29,6 +34,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#app-banner">Download App</a>
+            </li>
+            <li>
+              <a class="nav-link" href="addjob.html">Add Job</a>
             </li>
             <li>
               <a class="nav-link" href="appliedjobs.html">Applied Jobs</a>
@@ -71,76 +79,7 @@
   <section id="jobs">
     <div class="container mt-2">
       <h5>RECENT OPENINGS</h5>
-      <div class="company-details">
-        <div class="job-update">
-          <h4><b>Senior Blockchain Developer</b></h4>
-          <p>Blockchain Dev co.</p>
-          <i></i><span>2-3yrs</span><br>
-          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
-          <i></i><span> France.</span>
-          <p>Skills:<i></i><small> Java</small><small> python</small><small> HTML,CSS</small><small> .Net</small></p>
-          <p>Description:<i></i> Applicants are required to have required to have worked on some blockchain projects prior to the application.<a href=""> Read More</a></p>
-        </div>
-        <div class="apply-btn">
-          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
-        </div>
-      </div>
-      <div class="company-details">
-        <div class="job-update">
-          <h4><b>Software Developer(Fresher)</b></h4>
-          <p>Software Dev co.</p>
-          <i></i><span>0-1yrs</span><br>
-          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
-          <i></i><span> New York</span>
-          <p>Skills:<i></i><small> Javascript</small><small> python</small><small> HTML,CSS</small><small> Flutter</small></p>
-          <p>Description:<i></i> Applicant should be a liitle bit cquited with progamming and is ready to learn quickly. <a href=""> Read More</a></p>
-        </div>
-        <div class="apply-btn">
-          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
-        </div>
-      </div>
-      <div class="company-details">
-        <div class="job-update">
-          <h4><b>Senior Web Developer</b></h4>
-          <p>Web Dev co.</p>
-          <i></i><span>3-4yrs</span><br>
-          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
-          <i></i><span> Bulgota</span>
-          <p>Skills:<i></i><small> Angular Js</small><small> python</small><small> HTML,CSS</small><small> React Js</small></p>
-          <p>Description:<i></i> Applicants must have worked on various web projects and is highli skiiled and flexible. <a href=""> Read More</a></p>
-        </div>
-        <div class="apply-btn">
-          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
-        </div>
-      </div>
-      <div class="company-details">
-        <div class="job-update">
-          <h4><b>Seasoned Senior Python Developer. </b></h4>
-          <p>Python Dev co.</p>
-          <i></i><span>0-1yrs</span><br>
-          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
-          <i></i><span> Germany.</span>
-          <p>Skills:<i></i><small> Javascript</small><small> python</small><small> HTML,CSS</small><small> Django</small></p>
-          <p>Description:<i></i> Applicant must have been in python dev for a minimum of 4tears and must be highly skilled. <a href=""> Read More</a></p>
-        </div>
-        <div class="apply-btn">
-          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
-        </div>
-      </div>
-      <div class="company-details">
-        <div class="job-update">
-          <h4><b>Project Manager</b></h4>
-          <p>Project co.</p>
-          <i></i><span>0-1yrs</span><br>
-          <i></i><span>3.50 - 4.00 lacs p. a.</span><br>
-          <i></i><span> Spain</span>
-          <p>Skills:<i></i><small> Java</small><small> python</small><small> HTML,CSS</small><small> .Net</small></p>
-          <p>Description:<i></i> Apllicant must have people and managerial skill respectively and can co-ordinate <a href=""> Read More</a></p>
-        </div>
-        <div class="apply-btn">
-          <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
-        </div>
-      </div>
+      <div id="recentJobs"></div>
       <ul class="page-link text-center">
         <li class="left-arrow">&#8592;</li>
         <li class="active">1</li>
@@ -150,6 +89,24 @@
         <li class="right-arrow">&#8594;</li>
       </ul>
     </div>
+    <script id="jobsJS" type="x-tmpl-mustache">
+      {{#jobsArray}}
+        <div id="company-details">
+          <div class="job-update">
+            <h4><b>{{ devType }}</b></h4>
+            <p>{{ companyName }}</p>
+            <i></i><span>{{ jobDuration }} years</span><br>
+            <i></i><span>{{ amount }} AE</span><br>
+            <i></i><span>{{ jobLocation }}</span>
+            <p>Skills:<i></i><small>{{ skills }}</small></p>
+            <p>Description:<i></i> {{ description }} <a href=""> Read More</a></p>
+          </div>
+          <div class="apply-btn">
+            <button type="button" class="btn btn-dark"  data-toggle="modal" data-target="#applyModal">Apply Now</button>
+          </div>
+        </div> 
+      {{/jobsArray}}
+    </script>
   </section>
   <!--------Site stats---------->
   <section id="site-stats">
@@ -211,7 +168,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">APPLY FOR YOUR JOB ROLE.</h5>
+          <h5 class="modal-title">APPLY FOR YOUR JOB</h5>
           <button class="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true" class="btn btn-dark">&times;</span>
           </button>
@@ -255,7 +212,7 @@
   </div>
   
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="https://unpkg.com/@aeternity/aepp-sdk@4.2.0/dist/aepp-sdk.browser-script.js"></script>  
+  <script src="https://unpkg.com/@aeternity/aepp-sdk@4.2.0/dist/aepp-sdk.browser-script.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
   <script src="js/index.js"></script>
   <script src="js/bootstrap.js"></script>
