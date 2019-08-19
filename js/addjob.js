@@ -50,13 +50,13 @@ window.addEventListener('load', async () => {
 
 $('#addJobBtn').click(async function(){
   $("#loader").show();
-  const devType = ($('#input-name').val()),
-        companyName = ($('#input-email').val()),
-        jobDuration = ($('#input-link').val()),
-        amount = ($('#input-jobRole').val()),
-        jobLocation = ($('#input-aboutYourself').val()),
-        skills = ($('#input-jobRole').val()),
-        description = ($('#input-jobRole').val());
+  const devType = ($('#input-devType').val()),
+        companyName = ($('#input-company').val()),
+        jobDuration = ($('#input-jobDuration').val()),
+        amount = ($('#input-amount').val()),
+        jobLocation = ($('#input-location').val()),
+        skills = ($('#input-skills').val()),
+        description = ($('#input-jobDescripton').val());
 
   await contractCall('register_job', [devType, companyName, jobDuration, amount, jobLocation, skills, description]);
 
