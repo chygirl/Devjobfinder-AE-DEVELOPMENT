@@ -1,4 +1,4 @@
-var contractSource = `
+const applyContractSource = `
   contract ApplicationPortal =
     
     record applicant =
@@ -31,12 +31,12 @@ var contractSource = `
         Some(x) => x
 `;
 
-var contractAddress = 'ct_2oRWcRswdR8w2D6FkfJAQUF33LA1Kp2wzitpMyjuaGCTgUHpXd';
+const applyContractAddress = 'ct_2oRWcRswdR8w2D6FkfJAQUF33LA1Kp2wzitpMyjuaGCTgUHpXd';
 var client = null;
 var applyArray = [];
 
 async function contractCall(func, args, value) {
-  const contract = await client.getContractInstance(contractSource, {contractAddress});
+  const contract = await client.getContractInstance(applyContractSource, {applyContractAddress});
   const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
 
   return calledSet;

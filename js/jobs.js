@@ -1,4 +1,4 @@
-var contractSource = `
+const jobsContractSource = `
   contract JobPortal =
     
     record job =
@@ -33,7 +33,7 @@ var contractSource = `
         Some(x) => x
 `;
 
-var contractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
+const jobsContractAddress = 'ct_Lyf6EKFDUvNQmn7t7y6N1chnrsAAHMiPmTdgfLrUnp1zjULm8';
 var client = null;
 var jobsArray = [];
 var jobsLength = 0;
@@ -46,7 +46,7 @@ function renderJobs() {
 }
 
 async function callStatic(func, args) {
-  const contract = await client.getContractInstance(contractSource, {contractAddress});
+  const contract = await client.getContractInstance(jobsContractSource, {jobsContractAddress});
   const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
   const decodedGet = await calledGet.decode().catch(e => console.error(e));
 
