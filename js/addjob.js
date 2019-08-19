@@ -48,7 +48,7 @@ window.addEventListener('load', async () => {
   client = await Ae.Aepp();
 });
 
-$('#applicationBtn').click(async function(){
+$('#addJobBtn').click(async function(){
   $("#loader").show();
   const devType = ($('#input-name').val()),
         companyName = ($('#input-email').val()),
