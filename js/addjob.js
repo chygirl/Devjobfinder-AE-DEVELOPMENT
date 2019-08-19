@@ -50,15 +50,18 @@ window.addEventListener('load', async () => {
 
 $('#addJobBtn').click(async function(){
   $("#loader").show();
-  const devType = ($('#input-devType').val()),
-        companyName = ($('#input-company').val()),
-        jobDuration = ($('#input-jobDuration').val()),
-        amount = ($('#input-amount').val()),
-        jobLocation = ($('#input-location').val()),
-        skills = ($('#input-skills').val()),
-        description = ($('#input-jobDescripton').val());
 
-  await contractCall('register_job', [devType, companyName, jobDuration, amount, jobLocation, skills, description]);
+  var devType = ($('#input-devType').val());
+  var companyName = ($('#input-company').val());
+  var jobDuration = ($('#input-jobDuration').val());
+  var amount = ($('#input-amount').val());
+  var jobLocation = ($('#input-location').val());
+  var skills = ($('#input-skills').val());
+  var description = ($('#input-jobDescripton').val());
+
+  alert("Confirm your details. Developer Type: " + devType + " , Company Name: " + companyName + " , Job Duration: " + jobDuration + " years, Amount: " + amount + " AE, Job Location: " + jobLocation + " , Skills: " + skills + " and Job Description: " + description)
+
+  await contractCall('register_job', [devType, companyName, jobDuration, amount, jobLocation, skills, description], 0);
 
   jobsArray.push({
     devType: devType,
